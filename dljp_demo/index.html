@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DEMO by Team25</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="css/tiktok.css">
+
+    <!-- Theme CSS -->
+    <link href="css/main.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="header-content" class="bg-white">
+            <div class="container">
+                <div class="col-lg-12 text-center">
+                    <h1 id="homeHeading">特定の人物の発話シーンを</br>検出するシステム</h1>
+                    <h2>by Team25</h2>
+                    <p style="color: #f00">イヤホンかヘッドホン使用推奨．</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+     <section id="view" class="bg-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="embed-responsive embed-responsive-16by9">
+                    <video id="vid">
+                       <!--  <source src="https://vjs.zencdn.net/v/oceans.mp4" type='video/mp4' volume="0.5"/> -->
+                       <!--  <source src="https://vjs.zencdn.net/v/oceans.webm" type='video/webm'> -->
+                        <source src="./video/iuidemo_10files.mp4" type='video/mp4'/>
+                    </video>
+                    </div>  
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1">
+                     <img id="btn_play" src="img/btn_play.png" alt="再生／停止ボタン" style="width:30px; height:30px;">
+                </div>
+                <div class="col-xs-1">
+                    <table>
+                        <tr>
+                            <td> 
+                                <span class="glyphicon glyphicon-volume-up" style="font-size: 30px;"></span>
+                            </td>
+                            <td>
+                                <div id="volumeSlider"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+          
+            <div class="row">
+                <div class="col-xs-11" id="timeline-wrapper">
+                    <canvas id="timeline" style="background-color: #EEE; position: absolute; z-index: 0;"></canvas>
+                    <canvas id="myBar" style="background-color: #555555; position: absolute; z-index: 1; opacity:0.5"></canvas>
+                    <canvas id="pseudoTimeline" style="background-color: #000; position: absolute; z-index: 2; opacity:0"></canvas>
+                </div>
+                <div class="col-xs-1" id="slider-wrapper">
+                    <div  id="vUiSlider" class="" style="height: 50px"></div>
+                  <!--   <span  id="information" class="glyphicon glyphicon-info-sign pull-right" style="font-size: 12.31px; margin-left: 5px;"></span> -->
+                    <!-- <div id="slideValue"></div> --> 
+                </div>
+            </div>
+        </div>  
+    </section>
+
+    <section id="samples" class="bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">検出の対象となる人物の音声</h2>
+                <p>下記の10個の音声ファイルが動画中に含まれています．</p> 
+                <table class="table table-bordered">
+                    <tr>
+                        <td>
+                            <div class="text-center">
+                                <h3>File 1</h3>
+                                <audio controls="controls">
+                                  <source src="./audio/arctic_b0001.wav" type="audio/wav">
+                                </audio>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                <h3>File 2</h3>
+                                <audio controls="controls">
+                                  <source src="./audio/arctic_b0002.wav" type="audio/wav">
+                                </audio>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="text-center">
+                                <h3>File 3</h3>
+                                <audio controls="controls">
+                                  <source src="./audio/arctic_b0003.wav" type="audio/wav">
+                                </audio>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                <h3>File 4</h3>
+                                <audio controls="controls">
+                                  <source src="./audio/arctic_b0004.wav" type="audio/wav">
+                                </audio>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="text-center">
+                                <h3>File 5</h3>
+                                <audio controls="controls">
+                                  <source src="./audio/arctic_b0005.wav" type="audio/wav">
+                                </audio>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                <h3>File 6</h3>
+                                <audio controls="controls">
+                                  <source src="./audio/arctic_b0006.wav" type="audio/wav">
+                                </audio>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="text-center">
+                                <h3>File 7</h3>
+                                <audio controls="controls">
+                                  <source src="./audio/arctic_b0007.wav" type="audio/wav">
+                                </audio>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                <h3>File 8</h3>
+                                <audio controls="controls">
+                                  <source src="./audio/arctic_b0008.wav" type="audio/wav">
+                                </audio>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="text-center">
+                                <h3>File 9</h3>
+                                <audio controls="controls">
+                                  <source src="./audio/arctic_b0009.wav" type="audio/wav">
+                                </audio>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                <h3>File 10</h3>
+                                <audio controls="controls">
+                                  <source src="./audio/arctic_b0010.wav" type="audio/wav">
+                                </audio>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>    
+    </section>
+    
+    <section id="soundcloud" class="bg-primary">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">DNNのデモ</h2>
+                <p>「特定の人物の音声のみを抽出し，それ以外の音を抑制する」DNNのデモが下記のリンク先にあります．下記のリンク先には，本ページの動画の音源を当DNNに入力し，当DNNによって出力された音声が載っています．</p> 
+                <hr>
+                <h3><a href="https://soundcloud.com/rolniuqjxjlc/sets/dljp_team25" target="_blank">https://soundcloud.com/rolniuqjxjlc/sets/dljp_team25</a></h3>
+                <hr>
+            </div>
+        </div>
+    </div>
+    </section>
+    
+    <section id="footer" class="bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <hr>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- The overlay -->
+    <div id="indicator"></div>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/main.min.js"></script>
+    <script src="js/tiktok.min.js"></script>
+</body>
+</html>
+
+
